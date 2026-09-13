@@ -413,30 +413,36 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
         }
-        .hero-signature {
+        .hero-signature-wrapper {
             text-align: center;
             margin-top: 1.2rem;
+        }
+        .hero-signature {
             position: relative;
+            display: inline-block;
+            transform: rotate(-7deg);
         }
         .hero-signature span {
             font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-size: 2.2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #f8fafc, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
+            padding: 0 10px;
             position: relative;
-            display: inline-block;
+            z-index: 2;
         }
-        .hero-signature::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 2px;
-            margin: 6px auto 0;
-            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
-            border-radius: 2px;
+        .sig-underline {
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            max-width: 180px;
+            z-index: 1;
+            pointer-events: none;
         }
 
         /* About Section */
@@ -914,8 +920,21 @@
                 </div>
                 <div class="hero-image-wrapper">
                     <img src="profile.png" alt="Vishwaroop Galgali" class="hero-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMUIxQjFGIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjNTA1MDU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+Vkc8L3RleHQ+PC9zdmc+'">
-                    <div class="hero-signature">
-                        <span>Vishwaroop Galgali</span>
+                    <div class="hero-signature-wrapper">
+                        <div class="hero-signature">
+                            <span>v.s.galgali.</span>
+                            <svg class="sig-underline" viewBox="0 0 150 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5,15 Q75,0 145,15" stroke="url(#sig-grad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                                <circle cx="70" cy="25" r="2.5" fill="#10b981"/>
+                                <circle cx="80" cy="25" r="2.5" fill="#3b82f6"/>
+                                <defs>
+                                    <linearGradient id="sig-grad" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#10b981"/>
+                                        <stop offset="100%" stop-color="#3b82f6"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>
