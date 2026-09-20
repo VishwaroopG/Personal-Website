@@ -204,6 +204,7 @@
             padding: 5.5rem 0;
             border-bottom: 1px solid var(--border-hairline);
             position: relative;
+            scroll-margin-top: 72px;
         }
 
         .section-header {
@@ -397,11 +398,13 @@
             transition: width 0.25s var(--ease-out);
         }
 
-        .nav-item:hover {
+        .nav-item:hover,
+        .nav-item.active {
             color: var(--text-primary);
         }
 
-        .nav-item:hover::after {
+        .nav-item:hover::after,
+        .nav-item.active::after {
             width: 100%;
         }
 
@@ -2425,6 +2428,60 @@
                 mobileToggle.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>';
             }
         }
+
+        // 15. Smooth Navigation for all Anchor Links (Lenis + Native Fallback)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+
+                const targetEl = document.querySelector(href);
+                if (targetEl) {
+                    e.preventDefault();
+                    closeMobileDrawer();
+
+                    if (lenis) {
+                        lenis.scrollTo(targetEl, {
+                            offset: -72,
+                            duration: 1.25,
+                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                        });
+                    } else {
+                        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset - 72;
+                        window.scrollTo({
+                            top: targetPos,
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    if (history.pushState) {
+                        history.pushState(null, null, href);
+                    }
+                }
+            });
+        });
+
+        // 16. Active Nav Link Scroll Spy
+        const trackedSections = document.querySelectorAll('section[id]');
+        const primaryNavItems = document.querySelectorAll('.nav-menu .nav-item');
+
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + 100;
+            trackedSections.forEach(sec => {
+                const top = sec.offsetTop;
+                const height = sec.offsetHeight;
+                const id = sec.getAttribute('id');
+                if (scrollPos >= top && scrollPos < top + height) {
+                    primaryNavItems.forEach(link => {
+                        const linkHref = link.getAttribute('href');
+                        link.classList.toggle('active', linkHref === `#${id}`);
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav, { passive: true });
+        updateActiveNav();
     </script>
 </body>
 </html>
