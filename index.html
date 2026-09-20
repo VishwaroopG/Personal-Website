@@ -18,10 +18,9 @@
     
     <style>
         /* ==========================================================================
-           1. DESIGN SYSTEM & CSS TOKENS (Emil Kowalski + Taste-Skill Anti-Slop)
+           1. DESIGN SYSTEM & CSS TOKENS
            ========================================================================== */
         :root {
-            /* Palette: Deep Obsidian, Slate Carbon, Terminal Emerald */
             --bg-base: #090a0d;
             --bg-subtle: #0f1116;
             --surface-card: #12151b;
@@ -29,28 +28,24 @@
             --surface-muted: #1c212b;
             
             --border-hairline: rgba(255, 255, 255, 0.07);
-            --border-hover: rgba(255, 255, 255, 0.16);
-            --border-accent: rgba(0, 220, 130, 0.3);
+            --border-hover: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(0, 220, 130, 0.35);
             
             --text-primary: #f4f5f8;
             --text-secondary: #9aa2b1;
             --text-muted: #5e6676;
             --text-faint: #3e4451;
             
-            /* Singular Financial Accent: Terminal Emerald */
             --accent-emerald: #00dc82;
             --accent-emerald-subtle: rgba(0, 220, 130, 0.08);
-            --accent-emerald-glow: rgba(0, 220, 130, 0.2);
+            --accent-emerald-glow: rgba(0, 220, 130, 0.25);
             --accent-cyan: #38bdf8;
             
-            /* Typography */
             --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
             --font-sig: 'Dancing Script', cursive;
             
-            /* Emil Kowalski Easing & Micro-Interactions */
             --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
             --duration-snappy: 160ms;
             --duration-smooth: 240ms;
             
@@ -62,7 +57,6 @@
             --container-max: 1200px;
         }
 
-        /* CSS Reset & Global Discipline */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -70,7 +64,6 @@
         }
 
         html {
-            scroll-behavior: smooth;
             background-color: var(--bg-base);
             color: var(--text-primary);
             font-family: var(--font-sans);
@@ -87,7 +80,38 @@
             position: relative;
         }
 
-        /* Subtle Terminal Grid Overlay - Engineered Texture, not blurred blobs */
+        /* Top Glowing Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan), var(--accent-emerald));
+            background-size: 200% 100%;
+            z-index: 10001;
+            width: 0%;
+            pointer-events: none;
+            box-shadow: 0 0 12px rgba(0, 220, 130, 0.8);
+            transition: width 0.08s linear;
+        }
+
+        /* Dynamic Mouse Ambient Glow Spotlight */
+        .ambient-spotlight {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 650px;
+            height: 650px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 220, 130, 0.07) 0%, rgba(56, 189, 248, 0.02) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        /* Subtle Grid Overlay */
         body::before {
             content: '';
             position: fixed;
@@ -119,7 +143,6 @@
             display: block;
         }
 
-        /* Typography Presets */
         .mono {
             font-family: var(--font-mono);
             letter-spacing: -0.02em;
@@ -127,7 +150,7 @@
 
         .eyebrow {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.78rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.12em;
@@ -148,12 +171,24 @@
             box-shadow: 0 0 8px var(--accent-emerald);
         }
 
+        .typewriter-cursor {
+            display: inline-block;
+            color: var(--accent-emerald);
+            font-weight: 700;
+            animation: blink-caret 0.9s infinite;
+        }
+
+        @keyframes blink-caret {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
         .container {
             max-width: var(--container-max);
             margin: 0 auto;
             padding: 0 1.5rem;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         section {
@@ -162,7 +197,6 @@
             position: relative;
         }
 
-        /* Section Headers with Strict Discipline */
         .section-header {
             margin-bottom: 3.5rem;
         }
@@ -184,7 +218,7 @@
         }
 
         /* ==========================================================================
-           2. INTERACTIVE BUTTONS & CONTROLS (Emil Kowalski Physics)
+           2. INTERACTIVE BUTTONS & CONTROLS
            ========================================================================== */
         .btn {
             display: inline-flex;
@@ -200,11 +234,11 @@
                         border-color var(--duration-snappy) ease,
                         box-shadow var(--duration-snappy) ease;
             position: relative;
+            will-change: transform;
         }
 
-        /* Tactile push response */
         .btn:active {
-            transform: scale(0.98);
+            transform: scale(0.97) !important;
         }
 
         .btn-primary {
@@ -215,8 +249,7 @@
 
         .btn-primary:hover {
             background-color: #1fe493;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(0, 220, 130, 0.35);
+            box-shadow: 0 4px 18px rgba(0, 220, 130, 0.45);
         }
 
         .btn-secondary {
@@ -228,17 +261,6 @@
         .btn-secondary:hover {
             background-color: var(--surface-card-hover);
             border-color: var(--border-hover);
-            transform: translateY(-1px);
-        }
-
-        .btn-ghost {
-            color: var(--text-secondary);
-            padding: 0.6rem 0.9rem;
-        }
-
-        .btn-ghost:hover {
-            color: var(--text-primary);
-            background-color: var(--surface-card);
         }
 
         /* ==========================================================================
@@ -249,8 +271,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 100;
-            background-color: rgba(9, 10, 13, 0.85);
+            z-index: 1000;
+            background-color: rgba(9, 10, 13, 0.88);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-hairline);
@@ -282,6 +304,12 @@
             color: var(--accent-emerald);
             padding: 0.25rem 0.5rem;
             border-radius: var(--radius-sm);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .brand-link:hover .brand-monogram {
+            transform: scale(1.05);
+            border-color: var(--accent-emerald);
         }
 
         .market-status-pill {
@@ -295,6 +323,7 @@
             border: 1px solid var(--border-hairline);
             padding: 0.3rem 0.75rem;
             border-radius: var(--radius-pill);
+            transition: border-color 0.3s ease;
         }
 
         @media (min-width: 900px) {
@@ -331,10 +360,26 @@
             color: var(--text-secondary);
             transition: color var(--duration-snappy) ease;
             position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background-color: var(--accent-emerald);
+            transition: width 0.25s var(--ease-out);
         }
 
         .nav-item:hover {
             color: var(--text-primary);
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
         }
 
         .header-actions {
@@ -355,15 +400,12 @@
             border: 1px solid var(--border-hairline);
             color: var(--text-secondary);
             transition: all var(--duration-snappy) ease;
+            will-change: transform;
         }
 
         .copy-email-btn:hover {
             border-color: var(--border-hover);
             color: var(--text-primary);
-        }
-
-        .copy-email-btn:active {
-            transform: scale(0.97);
         }
 
         .mobile-nav-toggle {
@@ -382,7 +424,6 @@
             .mobile-nav-toggle { display: none; }
         }
 
-        /* Mobile Drawer */
         .mobile-drawer {
             position: fixed;
             top: 64px;
@@ -395,7 +436,7 @@
             flex-direction: column;
             padding: 2rem;
             gap: 1.5rem;
-            z-index: 99;
+            z-index: 999;
             transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
@@ -500,6 +541,7 @@
             border-radius: var(--radius-sm);
             border: 1px solid transparent;
             transition: all var(--duration-snappy) ease;
+            will-change: transform;
         }
 
         .social-chip:hover {
@@ -516,9 +558,10 @@
             padding: 1.75rem;
             position: relative;
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
-        /* Technical Corner Ticks */
         .executive-dossier::before,
         .executive-dossier::after {
             content: '';
@@ -547,19 +590,20 @@
             display: flex;
             align-items: center;
             gap: 1.25rem;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.25rem;
             border-bottom: 1px solid var(--border-hairline);
         }
 
         .portrait-frame {
             position: relative;
-            width: 90px;
-            height: 90px;
+            width: 88px;
+            height: 88px;
             flex-shrink: 0;
             border-radius: 50%;
             padding: 3px;
-            background: linear-gradient(135deg, var(--border-hover), var(--border-hairline));
+            background: linear-gradient(135deg, var(--accent-emerald), var(--border-hairline));
+            box-shadow: 0 0 16px rgba(0, 220, 130, 0.2);
         }
 
         .portrait-img {
@@ -587,7 +631,7 @@
             font-size: 0.78rem;
             color: var(--accent-emerald);
             margin-top: 0.2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .signature-mark {
@@ -620,11 +664,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: border-color var(--duration-snappy) ease;
+            transition: border-color var(--duration-snappy) ease, transform 0.2s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .pillar-card:hover {
-            border-color: var(--border-hover);
+            border-color: var(--border-accent);
         }
 
         .pillar-stat {
@@ -650,6 +696,39 @@
             line-height: 1.35;
         }
 
+        /* Dynamic Sparkline Chart inside Dossier */
+        .sparkline-box {
+            margin-top: 1.25rem;
+            padding: 0.9rem;
+            background: var(--bg-base);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-md);
+        }
+
+        .sparkline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .sparkline-badge {
+            color: var(--accent-emerald);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .sparkline-svg {
+            width: 100%;
+            height: 48px;
+            overflow: visible;
+        }
+
         /* ==========================================================================
            5. RESEARCH COVERAGE & VALUATION TEAR-SHEETS
            ========================================================================== */
@@ -673,16 +752,16 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform var(--duration-snappy) var(--ease-out),
-                        border-color var(--duration-snappy) ease,
+            transition: border-color var(--duration-snappy) ease,
                         box-shadow var(--duration-snappy) ease;
             position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .tear-sheet-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--border-hover);
-            box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.4);
+            border-color: var(--border-accent);
+            box-shadow: 0 14px 32px -10px rgba(0, 220, 130, 0.15);
         }
 
         .sheet-meta-bar {
@@ -763,7 +842,7 @@
         }
 
         /* ==========================================================================
-           6. INSTITUTIONAL TRACK RECORD (Editorial Career Timeline)
+           6. INSTITUTIONAL TRACK RECORD
            ========================================================================== */
         .timeline-filter-bar {
             display: flex;
@@ -784,6 +863,7 @@
             border: 1px solid var(--border-hairline);
             transition: all var(--duration-snappy) ease;
             white-space: nowrap;
+            will-change: transform;
         }
 
         .filter-pill:hover {
@@ -809,11 +889,14 @@
             border: 1px solid var(--border-hairline);
             border-radius: var(--radius-md);
             padding: 2rem;
-            transition: border-color var(--duration-snappy) ease;
+            transition: border-color var(--duration-snappy) ease, box-shadow var(--duration-snappy) ease;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .track-card:hover {
             border-color: var(--border-hover);
+            box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.4);
         }
 
         .track-header {
@@ -873,7 +956,7 @@
         }
 
         /* ==========================================================================
-           7. INSTITUTIONAL CAPABILITIES MATRIX (Anti-Slop, No % Bars)
+           7. INSTITUTIONAL CAPABILITIES MATRIX
            ========================================================================== */
         .matrix-grid {
             display: grid;
@@ -892,6 +975,13 @@
             border: 1px solid var(--border-hairline);
             border-radius: var(--radius-md);
             padding: 2rem 1.75rem;
+            transition: border-color var(--duration-snappy) ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .matrix-card:hover {
+            border-color: var(--border-hover);
         }
 
         .matrix-icon-header {
@@ -975,6 +1065,8 @@
             border: 1px solid var(--border-hairline);
             border-radius: var(--radius-md);
             padding: 2rem;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .panel-heading {
@@ -1030,6 +1122,8 @@
             margin: 0 auto;
             text-align: center;
             position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .contact-methods {
@@ -1055,16 +1149,13 @@
             align-items: center;
             gap: 1rem;
             transition: all var(--duration-snappy) ease;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
 
         .contact-card-btn:hover {
             border-color: var(--border-hover);
             background-color: var(--surface-card-hover);
-            transform: translateY(-2px);
-        }
-
-        .contact-card-btn:active {
-            transform: scale(0.98);
         }
 
         .contact-icon {
@@ -1135,12 +1226,12 @@
             color: var(--text-primary);
         }
 
-        /* Floating Copy Toast Notification (Emil Kowalski Physics) */
+        /* Floating Copy Toast Notification */
         .toast-notification {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            z-index: 1000;
+            z-index: 10000;
             background-color: #0c110e;
             border: 1px solid var(--accent-emerald);
             color: var(--text-primary);
@@ -1164,7 +1255,7 @@
             transform: translateY(0) scale(1);
         }
 
-        /* a11y & Reduced Motion Compliance */
+        /* a11y & Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -1176,6 +1267,12 @@
     </style>
 </head>
 <body>
+
+    <!-- Glowing Top Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Mouse Ambient Spotlight -->
+    <div id="ambient-spotlight" class="ambient-spotlight"></div>
 
     <!-- ==========================================
          COMMAND HEADER & DIRECTORY
@@ -1234,7 +1331,10 @@
             <div class="hero-split">
                 <!-- Left Column -->
                 <div class="hero-left">
-                    <div class="eyebrow">EQUITY RESEARCH · SMALL &amp; MID-CAPS</div>
+                    <div class="eyebrow">
+                        <span id="typewriter-text">EQUITY RESEARCH · SMALL &amp; MID-CAPS</span>
+                        <span class="typewriter-cursor">|</span>
+                    </div>
                     <h1 class="hero-headline">
                         Analyzing market inefficiencies. <br>
                         Building <span class="accent">valuation conviction</span>.
@@ -1269,14 +1369,14 @@
                 </div>
 
                 <!-- Right Column: Executive Tear-Sheet -->
-                <div class="executive-dossier">
+                <div class="executive-dossier" data-tilt>
                     <div class="dossier-top">
                         <div class="portrait-frame">
                             <img src="profile.png" alt="Vishwaroop Galgali" class="portrait-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgdmlld0JveD0iMCAwIDkwIDkwIj48cmVjdCB3aWR0aD0iOTAiIGhlaWdodD0iOTAiIGZpbGw9IiMxMjE1MWIiLz48dGV4dCB4PSI1MCUiIHk9IjU0JSIgZm9udC1mYW1pbHk9Im1vbm9zcGFjZSIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzAwZGM4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Vkc8L3RleHQ+PC9zdmc+'">
                         </div>
                         <div class="dossier-id">
                             <div class="dossier-name">Vishwaroop Galgali</div>
-                            <div class="dossier-role">RESEARCH ANALYST · SEBI REG. XV</div>
+                            <div class="dossier-role">RESEARCH ANALYST · NISM SERIES-XV</div>
                             <div class="signature-mark" title="Analyst Signature">
                                 <span class="signature-text">v.s.galgali.</span>
                             </div>
@@ -1285,22 +1385,44 @@
 
                     <!-- 4 Institutional Pillars -->
                     <div class="pillar-grid">
-                        <div class="pillar-card">
-                            <div class="pillar-stat">₹1.5k<span class="unit">Cr</span></div>
+                        <div class="pillar-card" data-tilt>
+                            <div class="pillar-stat">₹<span class="counter" data-target="1.5">0</span>k<span class="unit">Cr</span></div>
                             <div class="pillar-label">AUM Mandate Execution (OneClick Portfolios)</div>
                         </div>
-                        <div class="pillar-card">
-                            <div class="pillar-stat">35<span class="unit">+</span></div>
+                        <div class="pillar-card" data-tilt>
+                            <div class="pillar-stat"><span class="counter" data-target="35">0</span><span class="unit">+</span></div>
                             <div class="pillar-label">Research Notes &amp; Theses Published</div>
                         </div>
-                        <div class="pillar-card">
-                            <div class="pillar-stat">12<span class="unit">Equities</span></div>
+                        <div class="pillar-card" data-tilt>
+                            <div class="pillar-stat"><span class="counter" data-target="12">0</span><span class="unit">Equities</span></div>
                             <div class="pillar-label">Coverage Universe in Infra &amp; Materials</div>
                         </div>
-                        <div class="pillar-card">
-                            <div class="pillar-stat">19<span class="unit">Models</span></div>
+                        <div class="pillar-card" data-tilt>
+                            <div class="pillar-stat"><span class="counter" data-target="19">0</span><span class="unit">Models</span></div>
                             <div class="pillar-label">Quarterly KPI &amp; SOTP Valuation Trackers</div>
                         </div>
+                    </div>
+
+                    <!-- Animated Financial Sparkline -->
+                    <div class="sparkline-box">
+                        <div class="sparkline-header">
+                            <span>VALUATION TRAJECTORY INDEX</span>
+                            <span class="sparkline-badge">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m18 15-6-6-6 6"/></svg>
+                                +38.4% ALPHA
+                            </span>
+                        </div>
+                        <svg class="sparkline-svg" viewBox="0 0 300 50">
+                            <defs>
+                                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#00dc82" stop-opacity="0.3"/>
+                                    <stop offset="100%" stop-color="#00dc82" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <path class="sparkline-fill" d="M0,45 Q40,42 80,32 T160,24 T230,14 T300,5 L300,50 L0,50 Z" fill="url(#chartGrad)"/>
+                            <path class="sparkline-stroke" d="M0,45 Q40,42 80,32 T160,24 T230,14 T300,5" fill="none" stroke="#00dc82" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle class="sparkline-dot" cx="300" cy="5" r="4" fill="#00dc82"/>
+                        </svg>
                     </div>
                 </div>
             </div>
@@ -1322,7 +1444,7 @@
 
             <div class="dossier-grid">
                 <!-- Tear Sheet 1 -->
-                <div class="tear-sheet-card">
+                <div class="tear-sheet-card" data-tilt>
                     <div>
                         <div class="sheet-meta-bar">
                             <span>MANDATE EXECUTION</span>
@@ -1355,7 +1477,7 @@
                 </div>
 
                 <!-- Tear Sheet 2 -->
-                <div class="tear-sheet-card">
+                <div class="tear-sheet-card" data-tilt>
                     <div>
                         <div class="sheet-meta-bar">
                             <span>INITIATING COVERAGE</span>
@@ -1388,7 +1510,7 @@
                 </div>
 
                 <!-- Tear Sheet 3 -->
-                <div class="tear-sheet-card">
+                <div class="tear-sheet-card" data-tilt>
                     <div>
                         <div class="sheet-meta-bar">
                             <span>INSTITUTIONAL SCOPING</span>
@@ -1404,8 +1526,8 @@
                                 <span class="spec-value">~$30B Addressable AUM</span>
                             </div>
                             <div class="spec-row">
-                                <span class="spec-key">Regulatory Body</span>
-                                <span class="spec-value">SEBI AIF Regulations</span>
+                                <span class="spec-key">Framework</span>
+                                <span class="spec-value">AIF Regulations &amp; Diligence</span>
                             </div>
                             <div class="spec-row">
                                 <span class="spec-key">Target Client</span>
@@ -1415,7 +1537,7 @@
                     </div>
                     <div class="tag-row">
                         <span class="tag-pill">AIF Scoping</span>
-                        <span class="tag-pill">SEBI Compliance</span>
+                        <span class="tag-pill">Regulatory Filings</span>
                         <span class="tag-pill">Transaction Advisory</span>
                     </div>
                 </div>
@@ -1447,7 +1569,7 @@
             <!-- Timeline List -->
             <div class="track-list">
                 <!-- Role 1: ICICI Securities -->
-                <div class="track-card" data-category="research">
+                <div class="track-card" data-category="research" data-tilt>
                     <div class="track-header">
                         <div>
                             <div class="track-role">Equity Research Analyst</div>
@@ -1465,7 +1587,7 @@
                 </div>
 
                 <!-- Role 2: ICICI Bank -->
-                <div class="track-card" data-category="banking">
+                <div class="track-card" data-category="banking" data-tilt>
                     <div class="track-header">
                         <div>
                             <div class="track-role">Summer Intern · Transaction Banking Services</div>
@@ -1475,14 +1597,14 @@
                     </div>
                     <ul class="track-bullets">
                         <li>Evaluated institutional banking workflows and treasury requirements across India's growing Private Equity and Venture Capital ecosystem.</li>
-                        <li>Tracked <strong>46 newly registered Alternate Investment Funds (AIFs)</strong> via SEBI disclosures to build a structured database assessing market potential and registrar partnerships.</li>
+                        <li>Tracked <strong>46 newly registered Alternate Investment Funds (AIFs)</strong> via regulatory disclosures to build a structured database assessing market potential and registrar partnerships.</li>
                         <li>Participated in commercial onboarding meetings with 3 leading AIF registrars alongside senior relationship managers.</li>
                         <li>Identified Indian family offices (~$30B AUM) as an underpenetrated market segment and drafted bespoke transaction banking positioning papers.</li>
                     </ul>
                 </div>
 
                 <!-- Role 3: Welingkar PGDM -->
-                <div class="track-card" data-category="education">
+                <div class="track-card" data-category="education" data-tilt>
                     <div class="track-header">
                         <div>
                             <div class="track-role">PGDM in Research &amp; Business Analytics</div>
@@ -1497,7 +1619,7 @@
                 </div>
 
                 <!-- Role 4: SPPU B.Com -->
-                <div class="track-card" data-category="education">
+                <div class="track-card" data-category="education" data-tilt>
                     <div class="track-header">
                         <div>
                             <div class="track-role">Bachelor of Commerce (B.Com)</div>
@@ -1515,7 +1637,7 @@
     </section>
 
     <!-- ==========================================
-         INSTITUTIONAL CAPABILITIES MATRIX (Anti-Slop, No % Bars)
+         INSTITUTIONAL CAPABILITIES MATRIX
          ========================================== -->
     <section id="capabilities">
         <div class="container">
@@ -1529,7 +1651,7 @@
 
             <div class="matrix-grid">
                 <!-- Stack 1 -->
-                <div class="matrix-card">
+                <div class="matrix-card" data-tilt>
                     <div class="matrix-icon-header">
                         <div class="matrix-icon-box">01</div>
                         <div class="matrix-category-name">Valuation &amp; Financial Modeling</div>
@@ -1559,7 +1681,7 @@
                 </div>
 
                 <!-- Stack 2 -->
-                <div class="matrix-card">
+                <div class="matrix-card" data-tilt>
                     <div class="matrix-icon-header">
                         <div class="matrix-icon-box">02</div>
                         <div class="matrix-category-name">Terminal &amp; Analytical Systems</div>
@@ -1589,7 +1711,7 @@
                 </div>
 
                 <!-- Stack 3 -->
-                <div class="matrix-card">
+                <div class="matrix-card" data-tilt>
                     <div class="matrix-icon-header">
                         <div class="matrix-icon-box">03</div>
                         <div class="matrix-category-name">Sector Diligence &amp; Governance</div>
@@ -1604,7 +1726,7 @@
                             <span class="comp-desc">Laminates, plywood, tiles, distributor channel checks, and input cost dynamics.</span>
                         </li>
                         <li class="competency-item">
-                            <span class="comp-title">SEBI Research Analyst Regulations</span>
+                            <span class="comp-title">Capital Markets &amp; Research Standards</span>
                             <span class="comp-desc">Strict compliance with NISM Series XV guidelines, conflict disclosure, and client suitability.</span>
                         </li>
                         <li class="competency-item">
@@ -1632,7 +1754,7 @@
 
             <div class="duo-grid">
                 <!-- Certifications -->
-                <div class="panel-box">
+                <div class="panel-box" data-tilt>
                     <h3 class="panel-heading">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-emerald);"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
                         Professional Accreditations
@@ -1640,7 +1762,7 @@
                     
                     <div class="accreditation-item">
                         <div class="cert-name">NISM-Series-XV: Research Analyst Certification</div>
-                        <div class="cert-issuer">National Institute of Securities Markets (SEBI Mandated)</div>
+                        <div class="cert-issuer">National Institute of Securities Markets (NISM XV)</div>
                         <div class="cert-detail">Validity: July 2025 – July 2028 · Certificate Verification on File</div>
                     </div>
 
@@ -1658,7 +1780,7 @@
                 </div>
 
                 <!-- Leadership & Civic -->
-                <div class="panel-box">
+                <div class="panel-box" data-tilt>
                     <h3 class="panel-heading">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-emerald);"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                         Civic &amp; Cultural Leadership
@@ -1685,7 +1807,7 @@
          ========================================== -->
     <section id="contact">
         <div class="container">
-            <div class="terminal-box">
+            <div class="terminal-box" data-tilt>
                 <div class="eyebrow" style="justify-content: center;">INITIATE DIALOGUE</div>
                 <h2 class="section-title">Connect with the Analyst</h2>
                 <p class="section-desc" style="margin: 0 auto;">
@@ -1694,7 +1816,7 @@
 
                 <div class="contact-methods">
                     <!-- Email Card -->
-                    <div class="contact-card-btn" onclick="copyEmail()" style="cursor: pointer;" title="Click to copy email">
+                    <div class="contact-card-btn" onclick="copyEmail()" style="cursor: pointer;" title="Click to copy email" data-tilt>
                         <div class="contact-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                         </div>
@@ -1705,7 +1827,7 @@
                     </div>
 
                     <!-- Location Card -->
-                    <div class="contact-card-btn">
+                    <div class="contact-card-btn" data-tilt>
                         <div class="contact-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                         </div>
@@ -1716,7 +1838,7 @@
                     </div>
 
                     <!-- LinkedIn Card -->
-                    <a href="https://www.linkedin.com/in/vishwaroopgalgali/" target="_blank" rel="noopener noreferrer" class="contact-card-btn">
+                    <a href="https://www.linkedin.com/in/vishwaroopgalgali/" target="_blank" rel="noopener noreferrer" class="contact-card-btn" data-tilt>
                         <div class="contact-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                         </div>
@@ -1727,7 +1849,7 @@
                     </a>
 
                     <!-- GitHub Card -->
-                    <a href="https://github.com/VishwaroopG" target="_blank" rel="noopener noreferrer" class="contact-card-btn">
+                    <a href="https://github.com/VishwaroopG" target="_blank" rel="noopener noreferrer" class="contact-card-btn" data-tilt>
                         <div class="contact-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                         </div>
@@ -1773,25 +1895,346 @@
     </div>
 
     <!-- ==========================================
-         LIGHTWEIGHT INTERACTION ENGINE
+         ANIMATION & INTERACTION ENGINE (GSAP + LENIS)
          ========================================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
     <script>
-        // 1. Live Market Status Monitor (NSE / BSE Timezone Engine)
+        // 1. Lenis Smooth Scrolling Engine synchronized with GSAP ScrollTrigger
+        let lenis;
+        try {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                touchMultiplier: 2
+            });
+
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+        } catch (e) {
+            console.warn("Lenis fallback to native smooth scrolling", e);
+        }
+
+        // 2. Register GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 3. Glowing Top Scroll Progress Indicator
+        const progressBar = document.getElementById('scroll-progress');
+        window.addEventListener('scroll', () => {
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            if (totalScroll > 0) {
+                const progress = (window.scrollY / totalScroll) * 100;
+                if (progressBar) progressBar.style.width = progress + '%';
+            }
+        }, { passive: true });
+
+        // 4. Ambient Spotlight Follows Mouse
+        const spotlight = document.getElementById('ambient-spotlight');
+        if (spotlight && window.matchMedia('(pointer: fine)').matches) {
+            window.addEventListener('mousemove', (e) => {
+                spotlight.style.opacity = '1';
+                gsap.to(spotlight, {
+                    x: e.clientX,
+                    y: e.clientY,
+                    duration: 0.35,
+                    ease: "power2.out"
+                });
+            });
+            window.addEventListener('mouseleave', () => {
+                spotlight.style.opacity = '0';
+            });
+        }
+
+        // 5. Hero Typewriter Effect
+        const typewriterWords = [
+            "EQUITY RESEARCH · SMALL & MID-CAPS",
+            "FINANCIAL MODELING & SOTP VALUATION",
+            "ROAD INFRASTRUCTURE & MATERIALS",
+            "NISM SERIES-XV CERTIFIED ANALYST",
+            "PORTFOLIO LIFECYCLE · ₹1,500 CR AUM"
+        ];
+        const typewriterEl = document.getElementById('typewriter-text');
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            if (!typewriterEl) return;
+            const currentWord = typewriterWords[wordIndex];
+            
+            if (isDeleting) {
+                typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 30 : 65;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                speed = 2200; // Pause at end of word
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % typewriterWords.length;
+                speed = 400; // Pause before typing new word
+            }
+
+            setTimeout(typeLoop, speed);
+        }
+        setTimeout(typeLoop, 800);
+
+        // 6. Page Entrance Choreography (GSAP Timeline)
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+            // Animate Header
+            tl.from("header.command-bar", {
+                y: -50,
+                opacity: 0,
+                duration: 0.8
+            })
+            // Animate Hero Left Elements
+            .from(".hero-headline", {
+                y: 40,
+                opacity: 0,
+                duration: 0.9
+            }, "-=0.5")
+            .from(".hero-summary", {
+                y: 25,
+                opacity: 0,
+                duration: 0.7
+            }, "-=0.6")
+            .from(".hero-actions-row .btn", {
+                y: 20,
+                opacity: 0,
+                stagger: 0.12,
+                duration: 0.6
+            }, "-=0.5")
+            .from(".hero-social-strip a", {
+                y: 15,
+                opacity: 0,
+                stagger: 0.08,
+                duration: 0.5
+            }, "-=0.4")
+            // Animate Executive Tear-Sheet
+            .from(".executive-dossier", {
+                scale: 0.94,
+                opacity: 0,
+                duration: 1,
+                ease: "back.out(1.4)"
+            }, "-=0.8");
+
+            // Continuous gentle breathing float on portrait
+            gsap.to(".portrait-frame", {
+                y: -6,
+                duration: 2.6,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+        });
+
+        // 7. Stat Number Counters on Scroll (GSAP ScrollTrigger)
+        document.querySelectorAll('.counter').forEach((counter) => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            const isFloat = target % 1 !== 0;
+
+            ScrollTrigger.create({
+                trigger: counter,
+                start: "top 88%",
+                once: true,
+                onEnter: () => {
+                    const obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: target,
+                        duration: 1.8,
+                        ease: "power2.out",
+                        onUpdate: () => {
+                            counter.textContent = isFloat ? obj.val.toFixed(1) : Math.floor(obj.val);
+                        }
+                    });
+                }
+            });
+        });
+
+        // 8. Animated Sparkline Chart Stroke Drawing
+        const sparklineStroke = document.querySelector('.sparkline-stroke');
+        if (sparklineStroke) {
+            const length = sparklineStroke.getTotalLength ? sparklineStroke.getTotalLength() : 350;
+            gsap.set(sparklineStroke, { strokeDasharray: length, strokeDashoffset: length });
+            
+            ScrollTrigger.create({
+                trigger: ".sparkline-box",
+                start: "top 85%",
+                once: true,
+                onEnter: () => {
+                    gsap.to(sparklineStroke, {
+                        strokeDashoffset: 0,
+                        duration: 1.8,
+                        ease: "power2.out"
+                    });
+                    gsap.from(".sparkline-fill", {
+                        opacity: 0,
+                        duration: 1.2,
+                        delay: 0.6,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        }
+
+        // 9. Section Headers & Cards ScrollTrigger Entrance
+        document.querySelectorAll('.section-header').forEach((header) => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: header,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 35,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            });
+        });
+
+        // Research Dossier Cards Stagger
+        gsap.from(".tear-sheet-card", {
+            scrollTrigger: {
+                trigger: ".dossier-grid",
+                start: "top 82%",
+                toggleActions: "play none none reverse"
+            },
+            y: 45,
+            opacity: 0,
+            scale: 0.96,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+        // Track Record Cards Stagger
+        gsap.from(".track-card", {
+            scrollTrigger: {
+                trigger: ".track-list",
+                start: "top 82%",
+                toggleActions: "play none none reverse"
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.75,
+            stagger: 0.14,
+            ease: "power3.out"
+        });
+
+        // Capabilities Matrix Cards Stagger
+        gsap.from(".matrix-card", {
+            scrollTrigger: {
+                trigger: ".matrix-grid",
+                start: "top 82%",
+                toggleActions: "play none none reverse"
+            },
+            y: 45,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.16,
+            ease: "power3.out"
+        });
+
+        // Accreditations & Leadership Panels
+        gsap.from(".panel-box", {
+            scrollTrigger: {
+                trigger: ".duo-grid",
+                start: "top 82%",
+                toggleActions: "play none none reverse"
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.16,
+            ease: "power3.out"
+        });
+
+        // Contact Terminal Box
+        gsap.from(".terminal-box", {
+            scrollTrigger: {
+                trigger: "#contact",
+                start: "top 78%",
+                toggleActions: "play none none reverse"
+            },
+            y: 40,
+            scale: 0.97,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out"
+        });
+
+        // 10. Interactive 3D Perspective Tilt on Cards (Desktop)
+        if (window.matchMedia('(pointer: fine)').matches) {
+            document.querySelectorAll('[data-tilt]').forEach((card) => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    const rx = (y / (rect.height / 2)) * -5;
+                    const ry = (x / (rect.width / 2)) * 5;
+                    
+                    gsap.to(card, {
+                        rotateX: rx,
+                        rotateY: ry,
+                        transformPerspective: 900,
+                        duration: 0.25,
+                        ease: "power2.out"
+                    });
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.55,
+                        ease: "power2.out"
+                    });
+                });
+            });
+
+            // Magnetic Buttons Effect
+            document.querySelectorAll('.btn, .copy-email-btn, .social-chip, .filter-pill').forEach((btn) => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = (e.clientX - rect.left - rect.width / 2) * 0.28;
+                    const y = (e.clientY - rect.top - rect.height / 2) * 0.28;
+                    gsap.to(btn, { x: x, y: y, duration: 0.22, ease: "power2.out" });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" });
+                });
+            });
+        }
+
+        // 11. Real-Time Market Status Indicator
         function updateMarketStatus() {
             const label = document.getElementById('market-label');
             if (!label) return;
             
-            // IST calculation (UTC + 5:30)
             const now = new Date();
             const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
             const istTime = new Date(utcTime + (3600000 * 5.5));
             
-            const day = istTime.getDay(); // 0 = Sun, 6 = Sat
+            const day = istTime.getDay();
             const hours = istTime.getHours();
             const minutes = istTime.getMinutes();
             const timeInMinutes = hours * 60 + minutes;
             
-            // Market hours: 9:15 AM (555 mins) to 3:30 PM (930 mins) IST on Mon-Fri
+            // Trading session: 9:15 AM (555) to 3:30 PM (930) on Mon-Fri
             const isWeekday = day >= 1 && day <= 5;
             const isTradingHours = timeInMinutes >= 555 && timeInMinutes <= 930;
             
@@ -1806,14 +2249,13 @@
         updateMarketStatus();
         setInterval(updateMarketStatus, 60000);
 
-        // 2. Tactile Clipboard Copy with Emil Kowalski Micro-Physics
+        // 12. Tactile Clipboard Copy with Toast
         let toastTimeout;
         function copyEmail() {
             const email = "vishwaroopg8@gmail.com";
             navigator.clipboard.writeText(email).then(() => {
                 showToast("Copied " + email + " to clipboard");
             }).catch(() => {
-                // Fallback
                 showToast("Email: " + email);
             });
         }
@@ -1832,9 +2274,8 @@
             }, 3000);
         }
 
-        // 3. Timeline Filter Controls
+        // 13. Timeline Filter Controls with Smooth Fade Animation
         function filterTimeline(category, btn) {
-            // Update active pill state
             const buttons = document.querySelectorAll('.filter-pill');
             buttons.forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
@@ -1843,16 +2284,30 @@
             items.forEach(card => {
                 const itemCat = card.getAttribute('data-category');
                 if (category === 'all' || itemCat === category) {
-                    card.style.display = 'block';
-                    card.style.opacity = '1';
+                    gsap.to(card, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.35,
+                        display: "block",
+                        ease: "power2.out"
+                    });
                 } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
+                    gsap.to(card, {
+                        opacity: 0,
+                        y: -10,
+                        duration: 0.25,
+                        display: "none",
+                        ease: "power2.in"
+                    });
                 }
             });
+
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 350);
         }
 
-        // 4. Mobile Navigation Drawer
+        // 14. Mobile Navigation Drawer
         const mobileToggle = document.getElementById('mobile-toggle');
         const mobileDrawer = document.getElementById('mobile-drawer');
 
