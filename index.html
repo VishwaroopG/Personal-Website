@@ -54,7 +54,7 @@
             --radius-lg: 16px;
             --radius-pill: 9999px;
             
-            --container-max: 1200px;
+            --container-max: 1240px;
         }
 
         *, *::before, *::after {
@@ -100,10 +100,10 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 650px;
-            height: 650px;
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 220, 130, 0.07) 0%, rgba(56, 189, 248, 0.02) 40%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 220, 130, 0.06) 0%, rgba(56, 189, 248, 0.02) 40%, transparent 70%);
             pointer-events: none;
             z-index: 1;
             transform: translate(-50%, -50%);
@@ -158,7 +158,8 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            white-space: nowrap;
         }
 
         .eyebrow::before {
@@ -169,6 +170,7 @@
             border-radius: 50%;
             background-color: var(--accent-emerald);
             box-shadow: 0 0 8px var(--accent-emerald);
+            flex-shrink: 0;
         }
 
         .typewriter-cursor {
@@ -229,6 +231,8 @@
             font-size: 0.9rem;
             font-weight: 600;
             border-radius: var(--radius-sm);
+            white-space: nowrap;
+            flex-shrink: 0;
             transition: transform var(--duration-snappy) var(--ease-out),
                         background-color var(--duration-snappy) ease,
                         border-color var(--duration-snappy) ease,
@@ -264,7 +268,7 @@
         }
 
         /* ==========================================================================
-           3. COMMAND HEADER & LIVE STATUS
+           3. COMMAND HEADER & LIVE STATUS (Zero 2-line wraps)
            ========================================================================== */
         header.command-bar {
             position: fixed;
@@ -272,9 +276,9 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(9, 10, 13, 0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(9, 10, 13, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border-hairline);
         }
 
@@ -283,16 +287,20 @@
             align-items: center;
             justify-content: space-between;
             height: 64px;
+            gap: 1rem;
+            flex-wrap: nowrap;
         }
 
         .brand-link {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
             font-weight: 700;
             font-size: 0.95rem;
             letter-spacing: -0.01em;
             color: var(--text-primary);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .brand-monogram {
@@ -315,28 +323,30 @@
         .market-status-pill {
             display: none;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
             font-family: var(--font-mono);
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-secondary);
             background: var(--surface-card);
             border: 1px solid var(--border-hairline);
-            padding: 0.3rem 0.75rem;
+            padding: 0.25rem 0.65rem;
             border-radius: var(--radius-pill);
-            transition: border-color 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        @media (min-width: 900px) {
+        @media (min-width: 1180px) {
             .market-status-pill { display: inline-flex; }
         }
 
         .pulse-dot {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             background-color: var(--accent-emerald);
             box-shadow: 0 0 6px var(--accent-emerald);
             animation: pulse-ring 2s infinite ease-in-out;
+            flex-shrink: 0;
         }
 
         @keyframes pulse-ring {
@@ -347,10 +357,11 @@
         .nav-menu {
             display: none;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1.25rem;
+            flex-shrink: 1;
         }
 
-        @media (min-width: 800px) {
+        @media (min-width: 920px) {
             .nav-menu { display: flex; }
         }
 
@@ -361,6 +372,7 @@
             transition: color var(--duration-snappy) ease;
             position: relative;
             padding: 0.25rem 0;
+            white-space: nowrap;
         }
 
         .nav-item::after {
@@ -385,7 +397,9 @@
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .copy-email-btn {
@@ -400,6 +414,8 @@
             border: 1px solid var(--border-hairline);
             color: var(--text-secondary);
             transition: all var(--duration-snappy) ease;
+            white-space: nowrap;
+            flex-shrink: 0;
             will-change: transform;
         }
 
@@ -418,9 +434,10 @@
             background: var(--surface-card);
             border: 1px solid var(--border-hairline);
             color: var(--text-primary);
+            flex-shrink: 0;
         }
 
-        @media (min-width: 800px) {
+        @media (min-width: 920px) {
             .mobile-nav-toggle { display: none; }
         }
 
@@ -466,8 +483,8 @@
            4. COMMAND HERO (Asymmetric Split & Executive Tear-Sheet)
            ========================================================================== */
         #hero {
-            padding-top: 8.5rem;
-            padding-bottom: 6rem;
+            padding-top: 7.5rem;
+            padding-bottom: 5.5rem;
             background: radial-gradient(circle at 80% 20%, rgba(0, 220, 130, 0.04) 0%, transparent 60%);
         }
 
@@ -481,7 +498,7 @@
         @media (min-width: 980px) {
             .hero-split {
                 grid-template-columns: 1.15fr 0.85fr;
-                gap: 4.5rem;
+                gap: 4rem;
                 align-items: center;
             }
         }
@@ -493,12 +510,13 @@
         }
 
         .hero-headline {
-            font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
             font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -0.04em;
+            line-height: 1.12;
+            letter-spacing: -0.035em;
             color: var(--text-primary);
             margin-bottom: 1.25rem;
+            opacity: 1; /* Never hidden by default */
         }
 
         .hero-headline span.accent {
@@ -506,11 +524,12 @@
         }
 
         .hero-summary {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
             line-height: 1.6;
             margin-bottom: 2rem;
             max-width: 58ch;
+            opacity: 1; /* Never hidden by default */
         }
 
         .hero-actions-row {
@@ -524,10 +543,11 @@
         .hero-social-strip {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-hairline);
             width: 100%;
+            flex-wrap: wrap;
         }
 
         .social-chip {
@@ -541,6 +561,7 @@
             border-radius: var(--radius-sm);
             border: 1px solid transparent;
             transition: all var(--duration-snappy) ease;
+            white-space: nowrap;
             will-change: transform;
         }
 
@@ -560,6 +581,7 @@
             box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
             transform-style: preserve-3d;
             will-change: transform;
+            opacity: 1; /* Never hidden by default */
         }
 
         .executive-dossier::before,
@@ -757,6 +779,7 @@
             position: relative;
             transform-style: preserve-3d;
             will-change: transform;
+            opacity: 1;
         }
 
         .tear-sheet-card:hover {
@@ -892,6 +915,7 @@
             transition: border-color var(--duration-snappy) ease, box-shadow var(--duration-snappy) ease;
             transform-style: preserve-3d;
             will-change: transform;
+            opacity: 1;
         }
 
         .track-card:hover {
@@ -978,6 +1002,7 @@
             transition: border-color var(--duration-snappy) ease;
             transform-style: preserve-3d;
             will-change: transform;
+            opacity: 1;
         }
 
         .matrix-card:hover {
@@ -1067,6 +1092,7 @@
             padding: 2rem;
             transform-style: preserve-3d;
             will-change: transform;
+            opacity: 1;
         }
 
         .panel-heading {
@@ -1124,6 +1150,7 @@
             position: relative;
             transform-style: preserve-3d;
             will-change: transform;
+            opacity: 1;
         }
 
         .contact-methods {
@@ -1284,10 +1311,10 @@
                 <span>VISHWAROOP GALGALI</span>
             </a>
 
-            <!-- Real-Time Market Status Indicator -->
+            <!-- Compact Real-Time Market Status Indicator -->
             <div class="market-status-pill" id="market-status">
                 <span class="pulse-dot"></span>
-                <span id="market-label">NSE / BSE MONITOR · MUMBAI</span>
+                <span id="market-label">MUMBAI · IST</span>
             </div>
 
             <nav class="nav-menu" aria-label="Primary Navigation">
@@ -1386,19 +1413,19 @@
                     <!-- 4 Institutional Pillars -->
                     <div class="pillar-grid">
                         <div class="pillar-card" data-tilt>
-                            <div class="pillar-stat">₹<span class="counter" data-target="1.5">0</span>k<span class="unit">Cr</span></div>
+                            <div class="pillar-stat">₹<span class="counter" data-target="1.5">1.5</span>k<span class="unit">Cr</span></div>
                             <div class="pillar-label">AUM Mandate Execution (OneClick Portfolios)</div>
                         </div>
                         <div class="pillar-card" data-tilt>
-                            <div class="pillar-stat"><span class="counter" data-target="35">0</span><span class="unit">+</span></div>
+                            <div class="pillar-stat"><span class="counter" data-target="35">35</span><span class="unit">+</span></div>
                             <div class="pillar-label">Research Notes &amp; Theses Published</div>
                         </div>
                         <div class="pillar-card" data-tilt>
-                            <div class="pillar-stat"><span class="counter" data-target="12">0</span><span class="unit">Equities</span></div>
+                            <div class="pillar-stat"><span class="counter" data-target="12">12</span><span class="unit">Equities</span></div>
                             <div class="pillar-label">Coverage Universe in Infra &amp; Materials</div>
                         </div>
                         <div class="pillar-card" data-tilt>
-                            <div class="pillar-stat"><span class="counter" data-target="19">0</span><span class="unit">Models</span></div>
+                            <div class="pillar-stat"><span class="counter" data-target="19">19</span><span class="unit">Models</span></div>
                             <div class="pillar-label">Quarterly KPI &amp; SOTP Valuation Trackers</div>
                         </div>
                     </div>
@@ -1895,34 +1922,41 @@
     </div>
 
     <!-- ==========================================
-         ANIMATION & INTERACTION ENGINE (GSAP + LENIS)
+         ANIMATION & INTERACTION ENGINE (BULLETPROOF)
          ========================================== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 
     <script>
-        // 1. Lenis Smooth Scrolling Engine synchronized with GSAP ScrollTrigger
-        let lenis;
+        // 1. Bulletproof Lenis Initialization
+        let lenis = null;
         try {
-            lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smoothWheel: true,
-                touchMultiplier: 2
-            });
+            if (typeof Lenis !== 'undefined') {
+                lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    smoothWheel: true
+                });
 
-            lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add((time) => {
-                lenis.raf(time * 1000);
-            });
-            gsap.ticker.lagSmoothing(0);
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+
+                if (typeof ScrollTrigger !== 'undefined') {
+                    lenis.on('scroll', ScrollTrigger.update);
+                }
+            }
         } catch (e) {
-            console.warn("Lenis fallback to native smooth scrolling", e);
+            console.warn("Smooth scroll fallback active:", e);
         }
 
-        // 2. Register GSAP Plugins
-        gsap.registerPlugin(ScrollTrigger);
+        // 2. Register GSAP Plugins safely
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+        }
 
         // 3. Glowing Top Scroll Progress Indicator
         const progressBar = document.getElementById('scroll-progress');
@@ -1939,12 +1973,8 @@
         if (spotlight && window.matchMedia('(pointer: fine)').matches) {
             window.addEventListener('mousemove', (e) => {
                 spotlight.style.opacity = '1';
-                gsap.to(spotlight, {
-                    x: e.clientX,
-                    y: e.clientY,
-                    duration: 0.35,
-                    ease: "power2.out"
-                });
+                spotlight.style.left = e.clientX + 'px';
+                spotlight.style.top = e.clientY + 'px';
             });
             window.addEventListener('mouseleave', () => {
                 spotlight.style.opacity = '0';
@@ -1976,63 +2006,59 @@
                 charIndex++;
             }
 
-            let speed = isDeleting ? 30 : 65;
+            let speed = isDeleting ? 25 : 55;
 
             if (!isDeleting && charIndex === currentWord.length) {
-                speed = 2200; // Pause at end of word
+                speed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % typewriterWords.length;
-                speed = 400; // Pause before typing new word
+                speed = 350;
             }
 
             setTimeout(typeLoop, speed);
         }
-        setTimeout(typeLoop, 800);
+        setTimeout(typeLoop, 500);
 
-        // 6. Page Entrance Choreography (GSAP Timeline)
-        window.addEventListener('DOMContentLoaded', () => {
-            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        // 6. Safe Hero Entrance Animation (Never locks opacity to 0)
+        function initHeroEntrance() {
+            if (typeof gsap === 'undefined') return;
 
-            // Animate Header
-            tl.from("header.command-bar", {
-                y: -50,
-                opacity: 0,
-                duration: 0.8
-            })
-            // Animate Hero Left Elements
-            .from(".hero-headline", {
-                y: 40,
-                opacity: 0,
-                duration: 0.9
-            }, "-=0.5")
-            .from(".hero-summary", {
-                y: 25,
-                opacity: 0,
-                duration: 0.7
-            }, "-=0.6")
-            .from(".hero-actions-row .btn", {
-                y: 20,
-                opacity: 0,
-                stagger: 0.12,
-                duration: 0.6
-            }, "-=0.5")
-            .from(".hero-social-strip a", {
-                y: 15,
-                opacity: 0,
-                stagger: 0.08,
-                duration: 0.5
-            }, "-=0.4")
-            // Animate Executive Tear-Sheet
-            .from(".executive-dossier", {
-                scale: 0.94,
-                opacity: 0,
-                duration: 1,
-                ease: "back.out(1.4)"
-            }, "-=0.8");
+            // Header entrance
+            gsap.fromTo("header.command-bar", 
+                { y: -40, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", clearProps: "transform,opacity" }
+            );
 
-            // Continuous gentle breathing float on portrait
+            // Left Hero elements reveal safely
+            gsap.fromTo(".hero-headline", 
+                { y: 30, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.9, delay: 0.15, ease: "power3.out", clearProps: "transform,opacity" }
+            );
+
+            gsap.fromTo(".hero-summary", 
+                { y: 20, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.8, delay: 0.25, ease: "power3.out", clearProps: "transform,opacity" }
+            );
+
+            gsap.fromTo(".hero-actions-row .btn", 
+                { y: 20, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.7, delay: 0.35, stagger: 0.1, ease: "power3.out", clearProps: "transform,opacity" }
+            );
+
+            gsap.fromTo(".hero-social-strip", 
+                { opacity: 0 }, 
+                { opacity: 1, duration: 0.7, delay: 0.45, ease: "power2.out", clearProps: "opacity" }
+            );
+
+            // Right Executive Tear-Sheet reveal safely
+            gsap.fromTo(".executive-dossier", 
+                { scale: 0.94, opacity: 0 }, 
+                { scale: 1, opacity: 1, duration: 0.9, delay: 0.2, ease: "back.out(1.2)", clearProps: "transform,opacity" }
+            );
+
+            // Portrait gentle breathing float
             gsap.to(".portrait-frame", {
                 y: -6,
                 duration: 2.6,
@@ -2040,145 +2066,178 @@
                 repeat: -1,
                 yoyo: true
             });
-        });
-
-        // 7. Stat Number Counters on Scroll (GSAP ScrollTrigger)
-        document.querySelectorAll('.counter').forEach((counter) => {
-            const target = parseFloat(counter.getAttribute('data-target'));
-            const isFloat = target % 1 !== 0;
-
-            ScrollTrigger.create({
-                trigger: counter,
-                start: "top 88%",
-                once: true,
-                onEnter: () => {
-                    const obj = { val: 0 };
-                    gsap.to(obj, {
-                        val: target,
-                        duration: 1.8,
-                        ease: "power2.out",
-                        onUpdate: () => {
-                            counter.textContent = isFloat ? obj.val.toFixed(1) : Math.floor(obj.val);
-                        }
-                    });
-                }
-            });
-        });
-
-        // 8. Animated Sparkline Chart Stroke Drawing
-        const sparklineStroke = document.querySelector('.sparkline-stroke');
-        if (sparklineStroke) {
-            const length = sparklineStroke.getTotalLength ? sparklineStroke.getTotalLength() : 350;
-            gsap.set(sparklineStroke, { strokeDasharray: length, strokeDashoffset: length });
-            
-            ScrollTrigger.create({
-                trigger: ".sparkline-box",
-                start: "top 85%",
-                once: true,
-                onEnter: () => {
-                    gsap.to(sparklineStroke, {
-                        strokeDashoffset: 0,
-                        duration: 1.8,
-                        ease: "power2.out"
-                    });
-                    gsap.from(".sparkline-fill", {
-                        opacity: 0,
-                        duration: 1.2,
-                        delay: 0.6,
-                        ease: "power2.out"
-                    });
-                }
-            });
         }
 
-        // 9. Section Headers & Cards ScrollTrigger Entrance
-        document.querySelectorAll('.section-header').forEach((header) => {
-            gsap.from(header, {
-                scrollTrigger: {
-                    trigger: header,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 35,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power3.out"
+        // Run entrance immediately
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHeroEntrance);
+        } else {
+            initHeroEntrance();
+        }
+
+        // 7. Stat Number Counters on Scroll
+        if (typeof ScrollTrigger !== 'undefined' && typeof gsap !== 'undefined') {
+            document.querySelectorAll('.counter').forEach((counter) => {
+                const target = parseFloat(counter.getAttribute('data-target'));
+                const isFloat = target % 1 !== 0;
+
+                ScrollTrigger.create({
+                    trigger: counter,
+                    start: "top 90%",
+                    once: true,
+                    onEnter: () => {
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 1.6,
+                            ease: "power2.out",
+                            onUpdate: () => {
+                                counter.textContent = isFloat ? obj.val.toFixed(1) : Math.floor(obj.val);
+                            }
+                        });
+                    }
+                });
             });
-        });
 
-        // Research Dossier Cards Stagger
-        gsap.from(".tear-sheet-card", {
-            scrollTrigger: {
-                trigger: ".dossier-grid",
-                start: "top 82%",
-                toggleActions: "play none none reverse"
-            },
-            y: 45,
-            opacity: 0,
-            scale: 0.96,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power3.out"
-        });
+            // 8. Animated Sparkline Chart Stroke Drawing
+            const sparklineStroke = document.querySelector('.sparkline-stroke');
+            if (sparklineStroke) {
+                let length = 350;
+                try {
+                    length = sparklineStroke.getTotalLength();
+                } catch (e) {}
 
-        // Track Record Cards Stagger
-        gsap.from(".track-card", {
-            scrollTrigger: {
-                trigger: ".track-list",
-                start: "top 82%",
-                toggleActions: "play none none reverse"
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.75,
-            stagger: 0.14,
-            ease: "power3.out"
-        });
+                gsap.set(sparklineStroke, { strokeDasharray: length, strokeDashoffset: length });
+                
+                ScrollTrigger.create({
+                    trigger: ".sparkline-box",
+                    start: "top 85%",
+                    once: true,
+                    onEnter: () => {
+                        gsap.to(sparklineStroke, {
+                            strokeDashoffset: 0,
+                            duration: 1.8,
+                            ease: "power2.out"
+                        });
+                        gsap.fromTo(".sparkline-fill", 
+                            { opacity: 0 }, 
+                            { opacity: 1, duration: 1.2, delay: 0.5, ease: "power2.out" }
+                        );
+                    }
+                });
+            }
 
-        // Capabilities Matrix Cards Stagger
-        gsap.from(".matrix-card", {
-            scrollTrigger: {
-                trigger: ".matrix-grid",
-                start: "top 82%",
-                toggleActions: "play none none reverse"
-            },
-            y: 45,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.16,
-            ease: "power3.out"
-        });
+            // 9. Section Headers & Cards ScrollTrigger Entrance (Safe fromTo)
+            document.querySelectorAll('.section-header').forEach((header) => {
+                gsap.fromTo(header, 
+                    { y: 30, opacity: 0 }, 
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.7,
+                        ease: "power3.out",
+                        clearProps: "transform,opacity",
+                        scrollTrigger: {
+                            trigger: header,
+                            start: "top 88%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
 
-        // Accreditations & Leadership Panels
-        gsap.from(".panel-box", {
-            scrollTrigger: {
-                trigger: ".duo-grid",
-                start: "top 82%",
-                toggleActions: "play none none reverse"
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.16,
-            ease: "power3.out"
-        });
+            // Research Dossier Cards Stagger
+            gsap.fromTo(".tear-sheet-card", 
+                { y: 40, opacity: 0 }, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                        trigger: ".dossier-grid",
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
 
-        // Contact Terminal Box
-        gsap.from(".terminal-box", {
-            scrollTrigger: {
-                trigger: "#contact",
-                start: "top 78%",
-                toggleActions: "play none none reverse"
-            },
-            y: 40,
-            scale: 0.97,
-            opacity: 0,
-            duration: 0.9,
-            ease: "power3.out"
-        });
+            // Track Record Cards Stagger
+            gsap.fromTo(".track-card", 
+                { y: 35, opacity: 0 }, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                        trigger: ".track-list",
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+
+            // Capabilities Matrix Cards Stagger
+            gsap.fromTo(".matrix-card", 
+                { y: 35, opacity: 0 }, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                        trigger: ".matrix-grid",
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+
+            // Accreditations Panels
+            gsap.fromTo(".panel-box", 
+                { y: 35, opacity: 0 }, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                        trigger: ".duo-grid",
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+
+            // Contact Terminal Box
+            gsap.fromTo(".terminal-box", 
+                { y: 35, opacity: 0 }, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                        trigger: "#contact",
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        }
 
         // 10. Interactive 3D Perspective Tilt on Cards (Desktop)
-        if (window.matchMedia('(pointer: fine)').matches) {
+        if (window.matchMedia('(pointer: fine)').matches && typeof gsap !== 'undefined') {
             document.querySelectorAll('[data-tilt]').forEach((card) => {
                 card.addEventListener('mousemove', (e) => {
                     const rect = card.getBoundingClientRect();
@@ -2200,7 +2259,7 @@
                     gsap.to(card, {
                         rotateX: 0,
                         rotateY: 0,
-                        duration: 0.55,
+                        duration: 0.5,
                         ease: "power2.out"
                     });
                 });
@@ -2239,10 +2298,10 @@
             const isTradingHours = timeInMinutes >= 555 && timeInMinutes <= 930;
             
             if (isWeekday && isTradingHours) {
-                label.textContent = "NSE / BSE LIVE · ACTIVE SESSION";
+                label.textContent = "NSE / BSE LIVE";
                 label.style.color = "var(--accent-emerald)";
             } else {
-                label.textContent = "NSE / BSE CLOSED · MUMBAI ACTIVE";
+                label.textContent = "MUMBAI · IST";
                 label.style.color = "var(--text-secondary)";
             }
         }
@@ -2284,27 +2343,39 @@
             items.forEach(card => {
                 const itemCat = card.getAttribute('data-category');
                 if (category === 'all' || itemCat === category) {
-                    gsap.to(card, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.35,
-                        display: "block",
-                        ease: "power2.out"
-                    });
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(card, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 0.35,
+                            display: "block",
+                            ease: "power2.out"
+                        });
+                    } else {
+                        card.style.display = "block";
+                        card.style.opacity = "1";
+                    }
                 } else {
-                    gsap.to(card, {
-                        opacity: 0,
-                        y: -10,
-                        duration: 0.25,
-                        display: "none",
-                        ease: "power2.in"
-                    });
+                    if (typeof gsap !== 'undefined') {
+                        gsap.to(card, {
+                            opacity: 0,
+                            y: -10,
+                            duration: 0.25,
+                            display: "none",
+                            ease: "power2.in"
+                        });
+                    } else {
+                        card.style.display = "none";
+                        card.style.opacity = "0";
+                    }
                 }
             });
 
-            setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 350);
+            if (typeof ScrollTrigger !== 'undefined') {
+                setTimeout(() => {
+                    ScrollTrigger.refresh();
+                }, 350);
+            }
         }
 
         // 14. Mobile Navigation Drawer
