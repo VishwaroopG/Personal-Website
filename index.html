@@ -669,27 +669,28 @@
             line-height: 1.2;
         }
 
-        .dossier-role {
-            font-family: var(--font-mono);
-            font-size: 0.76rem;
+        .dossier-edu {
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 600;
             color: var(--accent-emerald);
-            margin-top: 0.2rem;
-            margin-bottom: 0.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 0.3rem;
+            margin-bottom: 0.65rem;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
         }
 
-        .dossier-edu {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            margin-bottom: 0.4rem;
-            line-height: 1.35;
+        .dossier-edu svg {
+            color: var(--accent-emerald);
+            flex-shrink: 0;
         }
 
         .dossier-edu span {
-            color: var(--text-secondary);
-            font-weight: 500;
+            color: var(--accent-emerald);
+            font-weight: 600;
         }
 
         .signature-mark {
@@ -1194,6 +1195,161 @@
         }
 
         /* ==========================================================================
+           6B. ACADEMIC QUALIFICATIONS & EDUCATION
+           ========================================================================== */
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.75rem;
+        }
+
+        @media (min-width: 900px) {
+            .education-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .education-card {
+            background-color: var(--surface-card);
+            border: 1px solid var(--border-hairline);
+            border-radius: var(--radius-md);
+            padding: 2.25rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: border-color var(--duration-snappy) ease,
+                        box-shadow var(--duration-snappy) ease,
+                        transform 0.2s ease;
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+            opacity: 1;
+        }
+
+        .education-card:hover {
+            border-color: var(--accent-emerald);
+            box-shadow: 0 14px 32px -10px rgba(0, 220, 130, 0.15);
+        }
+
+        .edu-badge-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 1.15rem;
+        }
+
+        .edu-badge {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-sm);
+            letter-spacing: 0.05em;
+        }
+
+        .edu-badge.postgraduate {
+            background: rgba(0, 220, 130, 0.12);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(0, 220, 130, 0.25);
+        }
+
+        .edu-badge.undergraduate {
+            background: rgba(59, 130, 246, 0.12);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .edu-cgpa {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            background: var(--bg-base);
+            border: 1px solid var(--border-hairline);
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .edu-degree {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-institution {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--accent-emerald);
+            margin-bottom: 0.4rem;
+        }
+
+        .edu-institution svg {
+            flex-shrink: 0;
+            color: var(--accent-emerald);
+        }
+
+        .edu-location-meta {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .edu-summary {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+
+        .edu-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .edu-achievement {
+            background: var(--bg-base);
+            border: 1px solid var(--border-hairline);
+            border-left: 3px solid var(--accent-emerald);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+        }
+
+        .edu-achieve-label {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent-emerald);
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-achieve-text {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* ==========================================================================
            7. INSTITUTIONAL CAPABILITIES MATRIX
            ========================================================================== */
         .matrix-grid {
@@ -1538,7 +1694,8 @@
             <nav class="nav-menu" aria-label="Primary Navigation">
                 <a href="#dossier" class="nav-item">Coverage</a>
                 <a href="#projects" class="nav-item">Projects</a>
-                <a href="#track-record" class="nav-item">Track Record</a>
+                <a href="#track-record" class="nav-item">Experience</a>
+                <a href="#education" class="nav-item">Education</a>
                 <a href="#capabilities" class="nav-item">Competencies</a>
                 <a href="#credentials" class="nav-item">Credentials</a>
                 <a href="#contact" class="nav-item">Contact</a>
@@ -1564,7 +1721,8 @@
         <a href="#hero" class="mobile-drawer-link" onclick="closeMobileDrawer()">Executive Overview</a>
         <a href="#dossier" class="mobile-drawer-link" onclick="closeMobileDrawer()">Research Coverage & Mandates</a>
         <a href="#projects" class="mobile-drawer-link" onclick="closeMobileDrawer()">GitHub Projects & Tools</a>
-        <a href="#track-record" class="mobile-drawer-link" onclick="closeMobileDrawer()">Institutional Track Record</a>
+        <a href="#track-record" class="mobile-drawer-link" onclick="closeMobileDrawer()">Institutional Experience</a>
+        <a href="#education" class="mobile-drawer-link" onclick="closeMobileDrawer()">Education & Qualifications</a>
         <a href="#capabilities" class="mobile-drawer-link" onclick="closeMobileDrawer()">Competencies Matrix</a>
         <a href="#credentials" class="mobile-drawer-link" onclick="closeMobileDrawer()">Credentials & Accreditations</a>
         <a href="#contact" class="mobile-drawer-link" onclick="closeMobileDrawer()">Direct Analyst Terminal</a>
@@ -1623,7 +1781,6 @@
                         </div>
                         <div class="dossier-id">
                             <div class="dossier-name">Vishwaroop Galgali</div>
-                            <div class="dossier-role">RESEARCH ANALYST · NISM SERIES-XV</div>
                             <div class="dossier-edu">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-emerald); flex-shrink: 0;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                                 <span>MBA · Welingkar Institute of Management</span>
@@ -1995,27 +2152,26 @@
     </section>
 
     <!-- ==========================================
-         INSTITUTIONAL TRACK RECORD (Timeline)
+         INSTITUTIONAL WORK EXPERIENCE (Timeline)
          ========================================== -->
     <section id="track-record">
         <div class="container">
             <div class="section-header">
-                <div class="eyebrow">CAREER MILESTONES &amp; EXPERIENCE</div>
-                <h2 class="section-title">Institutional Track Record</h2>
+                <div class="eyebrow">PROFESSIONAL CAREER &amp; PEDIGREE</div>
+                <h2 class="section-title">Institutional Work Experience</h2>
                 <p class="section-desc">
-                    Chronological progression across sell-side research, institutional transaction banking, and advanced business analytics.
+                    Professional sell-side equity research coverage and wholesale transaction banking mandates at premier Indian financial institutions.
                 </p>
             </div>
 
             <!-- Filter Controls -->
             <div class="timeline-filter-bar">
-                <button class="filter-pill active" onclick="filterTimeline('all', this)">All Engagements</button>
+                <button class="filter-pill active" onclick="filterTimeline('all', this)">All Roles</button>
                 <button class="filter-pill" onclick="filterTimeline('research', this)">Equity Research</button>
                 <button class="filter-pill" onclick="filterTimeline('banking', this)">Transaction Banking</button>
-                <button class="filter-pill" onclick="filterTimeline('education', this)">Education &amp; Honors</button>
             </div>
 
-            <!-- Timeline List -->
+            <!-- Timeline List (Work Experience Exclusively) -->
             <div class="track-list">
                 <!-- Role 1: ICICI Securities -->
                 <div class="track-card" data-category="research" data-tilt>
@@ -2051,35 +2207,93 @@
                         <li>Identified Indian family offices (~$30B AUM) as an underpenetrated market segment and drafted bespoke transaction banking positioning papers.</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Role 3: Welingkar PGDM -->
-                <div class="track-card" data-category="education" data-tilt>
-                    <div class="track-header">
-                        <div>
-                            <div class="track-role">MBA / PGDM in Research &amp; Business Analytics</div>
-                            <div class="track-org">Prin. L. N. Welingkar Institute of Management Development &amp; Research</div>
+    <!-- ==========================================
+         ACADEMIC QUALIFICATIONS & EDUCATION
+         ========================================== -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <div class="eyebrow">ACADEMIC BACKGROUND &amp; DEGREES</div>
+                <h2 class="section-title">Academic Qualifications &amp; Education</h2>
+                <p class="section-desc">
+                    Rigorous postgraduate business analytics and econometrics training combined with classical commerce, accounting, and financial law fundamentals.
+                </p>
+            </div>
+
+            <div class="education-grid">
+                <!-- Degree 1: Welingkar MBA / PGDM -->
+                <div class="education-card" data-tilt>
+                    <div class="edu-card-top">
+                        <div class="edu-badge-row">
+                            <span class="edu-badge postgraduate">POSTGRADUATE DEGREE</span>
+                            <span class="edu-cgpa">CGPA: 8.06 / 10</span>
                         </div>
-                        <div class="track-period">2023 – 2025 · CGPA: 8.06 / 10</div>
+                        <h3 class="edu-degree">MBA / PGDM in Research &amp; Business Analytics</h3>
+                        <div class="edu-institution">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            <span>Prin. L. N. Welingkar Institute of Management Development &amp; Research</span>
+                        </div>
+                        <div class="edu-location-meta">
+                            <span>MUMBAI, INDIA</span>
+                            <span>·</span>
+                            <span>2023 – 2025</span>
+                        </div>
                     </div>
-                    <ul class="track-bullets">
-                        <li>Specialized in financial econometrics, statistical modeling, equity valuation techniques, and database administration.</li>
-                        <li>Competed in institutional stock selection and pitching competitions, including the <em>Stock 'N' Roll Stock Pitch Challenge</em> (2023).</li>
-                    </ul>
+                    <div class="edu-card-body">
+                        <p class="edu-summary">
+                            Specialized in financial econometrics, statistical modeling, equity valuation techniques, and database administration for capital markets decision-making.
+                        </p>
+                        <div class="edu-tags">
+                            <span class="tag-pill">Financial Econometrics</span>
+                            <span class="tag-pill">Statistical Modeling</span>
+                            <span class="tag-pill">Equity Valuation</span>
+                            <span class="tag-pill">Predictive Analytics</span>
+                            <span class="tag-pill">Capital Markets</span>
+                        </div>
+                        <div class="edu-achievement">
+                            <div class="edu-achieve-label">Key Milestone</div>
+                            <div class="edu-achieve-text">Finalist in institutional stock selection and pitching competitions, including the <em>Stock 'N' Roll Stock Pitch Challenge</em> (2023).</div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Role 4: SPPU B.Com -->
-                <div class="track-card" data-category="education" data-tilt>
-                    <div class="track-header">
-                        <div>
-                            <div class="track-role">Bachelor of Commerce (B.Com)</div>
-                            <div class="track-org">Savitribai Phule Pune University (SPPU)</div>
+                <!-- Degree 2: SPPU B.Com -->
+                <div class="education-card" data-tilt>
+                    <div class="edu-card-top">
+                        <div class="edu-badge-row">
+                            <span class="edu-badge undergraduate">UNDERGRADUATE DEGREE</span>
+                            <span class="edu-cgpa">CGPA: 8.42 / 10</span>
                         </div>
-                        <div class="track-period">2019 – 2022 · CGPA: 8.42 / 10</div>
+                        <h3 class="edu-degree">Bachelor of Commerce (B.Com)</h3>
+                        <div class="edu-institution">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            <span>Savitribai Phule Pune University (SPPU)</span>
+                        </div>
+                        <div class="edu-location-meta">
+                            <span>PUNE, INDIA</span>
+                            <span>·</span>
+                            <span>2019 – 2022</span>
+                        </div>
                     </div>
-                    <ul class="track-bullets">
-                        <li>Advanced coursework in Corporate Accounting, Auditing, Corporate Law, and Indian Financial Systems.</li>
-                        <li>Extracurricular Leadership: Led inter-college musical group performing at the prestigious <em>Firodia Karandak</em> cultural competition.</li>
-                    </ul>
+                    <div class="edu-card-body">
+                        <p class="edu-summary">
+                            Completed comprehensive undergraduate curriculum in accounting, auditing, commercial jurisprudence, and Indian financial institutions.
+                        </p>
+                        <div class="edu-tags">
+                            <span class="tag-pill">Advanced Accounting</span>
+                            <span class="tag-pill">Corporate Law</span>
+                            <span class="tag-pill">Auditing & Assurance</span>
+                            <span class="tag-pill">Indian Banking Systems</span>
+                        </div>
+                        <div class="edu-achievement">
+                            <div class="edu-achieve-label">Leadership & Culture</div>
+                            <div class="edu-achieve-text">Led inter-college musical ensemble performing at the prestigious <em>Firodia Karandak</em> cultural competition.</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2327,8 +2541,10 @@
                 <a href="#hero" class="footer-link">Top</a>
                 <a href="#dossier" class="footer-link">Coverage</a>
                 <a href="#projects" class="footer-link">Projects</a>
-                <a href="#track-record" class="footer-link">Track Record</a>
+                <a href="#track-record" class="footer-link">Experience</a>
+                <a href="#education" class="footer-link">Education</a>
                 <a href="#capabilities" class="footer-link">Competencies</a>
+                <a href="#credentials" class="footer-link">Credentials</a>
                 <a href="#contact" class="footer-link">Contact</a>
             </div>
 
@@ -2633,6 +2849,24 @@
                     clearProps: "transform,opacity",
                     scrollTrigger: {
                         trigger: ".track-list",
+                        start: "top 85%",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+
+            // Education Cards Stagger
+            gsap.fromTo(".education-card", 
+                { y: 35, opacity: 0 }, 
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.7,
+                    stagger: 0.12,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                        trigger: ".education-grid",
                         start: "top 85%",
                         toggleActions: "play none none none"
                     }
