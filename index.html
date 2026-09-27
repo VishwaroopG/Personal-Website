@@ -1692,13 +1692,12 @@
             </div>
 
             <nav class="nav-menu" aria-label="Primary Navigation">
-                <a href="#dossier" class="nav-item">Coverage</a>
-                <a href="#projects" class="nav-item">Projects</a>
                 <a href="#track-record" class="nav-item">Experience</a>
+                <a href="#projects" class="nav-item">Projects</a>
+                <a href="#dossier" class="nav-item">Coverage</a>
                 <a href="#education" class="nav-item">Education</a>
                 <a href="#capabilities" class="nav-item">Competencies</a>
                 <a href="#credentials" class="nav-item">Credentials</a>
-                <a href="#insights" class="nav-item">Insights</a>
                 <a href="#contact" class="nav-item">Contact</a>
             </nav>
 
@@ -1720,13 +1719,12 @@
     <!-- Mobile Drawer Navigation -->
     <div class="mobile-drawer" id="mobile-drawer">
         <a href="#hero" class="mobile-drawer-link" onclick="closeMobileDrawer()">Executive Overview</a>
-        <a href="#dossier" class="mobile-drawer-link" onclick="closeMobileDrawer()">Research Coverage & Mandates</a>
-        <a href="#projects" class="mobile-drawer-link" onclick="closeMobileDrawer()">GitHub Projects & Tools</a>
         <a href="#track-record" class="mobile-drawer-link" onclick="closeMobileDrawer()">Institutional Experience</a>
+        <a href="#projects" class="mobile-drawer-link" onclick="closeMobileDrawer()">GitHub Projects & Tools</a>
+        <a href="#dossier" class="mobile-drawer-link" onclick="closeMobileDrawer()">Research Coverage & Mandates</a>
         <a href="#education" class="mobile-drawer-link" onclick="closeMobileDrawer()">Education & Qualifications</a>
         <a href="#capabilities" class="mobile-drawer-link" onclick="closeMobileDrawer()">Competencies Matrix</a>
         <a href="#credentials" class="mobile-drawer-link" onclick="closeMobileDrawer()">Credentials & Accreditations</a>
-        <a href="#insights" class="mobile-drawer-link" onclick="closeMobileDrawer()">Global Macro Insights</a>
         <a href="#contact" class="mobile-drawer-link" onclick="closeMobileDrawer()">Direct Analyst Terminal</a>
     </div>
 
@@ -1840,116 +1838,77 @@
     </section>
 
     <!-- ==========================================
-         RESEARCH COVERAGE & VALUATION DOSSIER
+         INSTITUTIONAL WORK EXPERIENCE
          ========================================== -->
-    <section id="dossier">
+    <section id="track-record">
         <div class="container">
             <div class="section-header">
-                <div class="eyebrow">RESEARCH MANDATES &amp; VALUATION</div>
-                <h2 class="section-title">Institutional Research Dossier</h2>
+                <div class="eyebrow">PROFESSIONAL CAREER &amp; PEDIGREE</div>
+                <h2 class="section-title">Institutional Work Experience</h2>
                 <p class="section-desc">
-                    Rigorous bottom-up fundamental analysis, financial model architecture, and regulatory portfolio management executed across institutional and high-net-worth mandates.
+                    Professional sell-side equity research coverage and wholesale transaction banking mandates at premier Indian financial institutions.
                 </p>
             </div>
 
-            <div class="dossier-grid">
-                <!-- Tear Sheet 1 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>MANDATE EXECUTION</span>
-                            <span class="sheet-badge">₹1,500 CR AUM</span>
+            <!-- Filter Controls -->
+            <div class="timeline-filter-bar">
+                <button class="filter-pill active" onclick="filterTimeline('all', this)">All Roles</button>
+                <button class="filter-pill" onclick="filterTimeline('research', this)">Equity Research</button>
+                <button class="filter-pill" onclick="filterTimeline('banking', this)">Transaction Banking</button>
+            </div>
+
+            <!-- Timeline List (Work Experience Exclusively) -->
+            <div class="track-list">
+                <!-- Role 1: YES Securities -->
+                <div class="track-card" data-category="research" data-tilt>
+                    <div class="track-header">
+                        <div>
+                            <div class="track-role">Equity Research Analyst</div>
+                            <div class="track-org">YES Securities · Research Team</div>
                         </div>
-                        <h3 class="sheet-title">OneClick Equity Portfolios</h3>
-                        <p class="sheet-thesis">
-                            Managed the comprehensive analytical and operational lifecycle of diversified equity portfolios supporting retail, HNI, and family office wealth allocators. Built strict screening criteria for entry hurdles, balance sheet strength, and periodic rebalancing.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Strategy</span>
-                                <span class="spec-value">Small &amp; Mid-Cap Alpha</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Coverage Scope</span>
-                                <span class="spec-value">BSE / NSE Universe</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Discipline</span>
-                                <span class="spec-value">Factor &amp; Liquidity Screened</span>
-                            </div>
-                        </div>
+                        <div class="track-period">MUMBAI</div>
                     </div>
-                    <div class="tag-row">
-                        <span class="tag-pill">AUM Lifecycle</span>
-                        <span class="tag-pill">Stock Selection</span>
-                        <span class="tag-pill">Portfolio Rebalancing</span>
-                    </div>
+                    <ul class="track-bullets">
+                        <li>Currently covering the <strong>BFSI sector</strong> — banks, NBFCs, fintechs, and insurers — with bottom-up fundamental analysis and quarterly earnings tracking.</li>
+                        <li>Building and maintaining <strong>earnings models and valuation frameworks</strong> (comparable multiples, DCF, SOTP) tracking NIMs, asset quality, credit costs, and premium growth.</li>
+                        <li>Authoring <strong>earnings reviews and thematic notes</strong> supported by management interactions, channel checks, and regulatory filing analysis.</li>
+                        <li>Supporting retail and institutional distribution with high-conviction theses, risk articulation, and target price rationales.</li>
+                    </ul>
                 </div>
 
-                <!-- Tear Sheet 2 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>INITIATING COVERAGE</span>
-                            <span class="sheet-badge">SELL-SIDE RESEARCH</span>
+                <!-- Role 2: ICICI Securities -->
+                <div class="track-card" data-category="research" data-tilt>
+                    <div class="track-header">
+                        <div>
+                            <div class="track-role">Equity Research Analyst</div>
+                            <div class="track-org">ICICI Securities · Retail Research Team</div>
                         </div>
-                        <h3 class="sheet-title">Greenlam Industries Limited</h3>
-                        <p class="sheet-thesis">
-                            Authored full-scale initiating coverage on India’s leading laminate manufacturer. Engineered a dynamic 3-statement forecast evaluating margin inflection from raw material stabilization (phenol/melamine) and capex commercialization at Naidupeta &amp; Tindivanam.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Methodology</span>
-                                <span class="spec-value">SOTP &amp; Forward Multiples</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Sector</span>
-                                <span class="spec-value">Building Materials</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Key Driver</span>
-                                <span class="spec-value">Raw Material Cycle + Capex</span>
-                            </div>
-                        </div>
+                        <div class="track-period">MUMBAI</div>
                     </div>
-                    <div class="tag-row">
-                        <span class="tag-pill">Initiating Coverage</span>
-                        <span class="tag-pill">SOTP Valuation</span>
-                        <span class="tag-pill">Earnings Model</span>
-                    </div>
+                    <ul class="track-bullets">
+                        <li>Covered 12 BSE/NSE-listed small- and mid-cap companies across <strong>Construction, Infrastructure, Building Materials, and Cement</strong> sectors.</li>
+                        <li>Authored and published <strong>35+ institutional and retail research reports</strong>, including initiating coverage notes, quarterly earnings reviews, and thematic sector analyses.</li>
+                        <li>Engineered <strong>5+ valuation models from scratch</strong> and maintained 19 financial models monitoring quarterly operating KPIs, revenue drivers, and EBITDA margin sensitivity.</li>
+                        <li>Monitored public infrastructure policy catalysts across <strong>MoRTH, NHAI, and the Jal Jeevan Mission</strong> to forecast contract award trajectories and order-book momentum.</li>
+                        <li>Co-managed the operational and analytical lifecycle of the <strong>OneClick Equity Portfolios</strong> product supporting approximately <strong>₹1,500 Crore AUM</strong>.</li>
+                    </ul>
                 </div>
 
-                <!-- Tear Sheet 3 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>INSTITUTIONAL SCOPING</span>
-                            <span class="sheet-badge">PE / VC &amp; AIF</span>
+                <!-- Role 3: ICICI Bank -->
+                <div class="track-card" data-category="banking" data-tilt>
+                    <div class="track-header">
+                        <div>
+                            <div class="track-role">Summer Intern · Transaction Banking Services</div>
+                            <div class="track-org">ICICI Bank · Wholesale Banking Division</div>
                         </div>
-                        <h3 class="sheet-title">AIF Ecosystem &amp; Family Offices</h3>
-                        <p class="sheet-thesis">
-                            Conducted comprehensive ecosystem mapping of Alternate Investment Funds and transaction banking opportunities. Extracted regulatory filings for 46 SEBI-registered AIFs, evaluated fund registrar operations, and scoped transaction banking requirements for a ~$30B family office universe.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Market Size</span>
-                                <span class="spec-value">~$30B Addressable AUM</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Framework</span>
-                                <span class="spec-value">AIF Regulations &amp; Diligence</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Target Client</span>
-                                <span class="spec-value">AIF Funds &amp; Family Offices</span>
-                            </div>
-                        </div>
+                        <div class="track-period">MUMBAI</div>
                     </div>
-                    <div class="tag-row">
-                        <span class="tag-pill">AIF Scoping</span>
-                        <span class="tag-pill">Regulatory Filings</span>
-                        <span class="tag-pill">Transaction Advisory</span>
-                    </div>
+                    <ul class="track-bullets">
+                        <li>Evaluated institutional banking workflows and treasury requirements across India's growing Private Equity and Venture Capital ecosystem.</li>
+                        <li>Tracked <strong>46 newly registered Alternate Investment Funds (AIFs)</strong> via regulatory disclosures to build a structured database assessing market potential and registrar partnerships.</li>
+                        <li>Participated in commercial onboarding meetings with 3 leading AIF registrars alongside senior relationship managers.</li>
+                        <li>Identified Indian family offices (~$30B AUM) as an underpenetrated market segment and drafted bespoke transaction banking positioning papers.</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -2154,82 +2113,122 @@
     </section>
 
     <!-- ==========================================
-         INSTITUTIONAL WORK EXPERIENCE (Timeline)
+         RESEARCH COVERAGE & VALUATION DOSSIER
          ========================================== -->
-    <section id="track-record">
+    <section id="dossier">
         <div class="container">
             <div class="section-header">
-                <div class="eyebrow">PROFESSIONAL CAREER &amp; PEDIGREE</div>
-                <h2 class="section-title">Institutional Work Experience</h2>
+                <div class="eyebrow">RESEARCH MANDATES &amp; VALUATION</div>
+                <h2 class="section-title">Institutional Research Dossier</h2>
                 <p class="section-desc">
-                    Professional sell-side equity research coverage and wholesale transaction banking mandates at premier Indian financial institutions.
+                    Rigorous bottom-up fundamental analysis, financial model architecture, and regulatory portfolio management executed across institutional and high-net-worth mandates.
                 </p>
             </div>
 
-            <!-- Filter Controls -->
-            <div class="timeline-filter-bar">
-                <button class="filter-pill active" onclick="filterTimeline('all', this)">All Roles</button>
-                <button class="filter-pill" onclick="filterTimeline('research', this)">Equity Research</button>
-                <button class="filter-pill" onclick="filterTimeline('banking', this)">Transaction Banking</button>
-            </div>
-
-            <!-- Timeline List (Work Experience Exclusively) -->
-            <div class="track-list">
-                <!-- Role 1: YES Securities -->
-                <div class="track-card" data-category="research" data-tilt>
-                    <div class="track-header">
-                        <div>
-                            <div class="track-role">Equity Research Analyst</div>
-                            <div class="track-org">YES Securities · Research Team</div>
+            <div class="dossier-grid">
+                <!-- Tear Sheet 1 -->
+                <div class="tear-sheet-card" data-tilt>
+                    <div>
+                        <div class="sheet-meta-bar">
+                            <span>MANDATE EXECUTION</span>
+                            <span class="sheet-badge">₹1,500 CR AUM</span>
                         </div>
-                        <div class="track-period">MUMBAI</div>
+                        <h3 class="sheet-title">OneClick Equity Portfolios</h3>
+                        <p class="sheet-thesis">
+                            Managed the comprehensive analytical and operational lifecycle of diversified equity portfolios supporting retail, HNI, and family office wealth allocators. Built strict screening criteria for entry hurdles, balance sheet strength, and periodic rebalancing.
+                        </p>
+                        <div class="sheet-specs-table">
+                            <div class="spec-row">
+                                <span class="spec-key">Strategy</span>
+                                <span class="spec-value">Small &amp; Mid-Cap Alpha</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Coverage Scope</span>
+                                <span class="spec-value">BSE / NSE Universe</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Discipline</span>
+                                <span class="spec-value">Factor &amp; Liquidity Screened</span>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="track-bullets">
-                        <li>Currently covering the <strong>BFSI sector</strong> — banks, NBFCs, fintechs, and insurers — with bottom-up fundamental analysis and quarterly earnings tracking.</li>
-                        <li>Building and maintaining <strong>earnings models and valuation frameworks</strong> (comparable multiples, DCF, SOTP) tracking NIMs, asset quality, credit costs, and premium growth.</li>
-                        <li>Authoring <strong>earnings reviews and thematic notes</strong> supported by management interactions, channel checks, and regulatory filing analysis.</li>
-                        <li>Supporting retail and institutional distribution with high-conviction theses, risk articulation, and target price rationales.</li>
-                    </ul>
+                    <div class="tag-row">
+                        <span class="tag-pill">AUM Lifecycle</span>
+                        <span class="tag-pill">Stock Selection</span>
+                        <span class="tag-pill">Portfolio Rebalancing</span>
+                    </div>
                 </div>
 
-                <!-- Role 2: ICICI Securities -->
-                <div class="track-card" data-category="research" data-tilt>
-                    <div class="track-header">
-                        <div>
-                            <div class="track-role">Equity Research Analyst</div>
-                            <div class="track-org">ICICI Securities · Retail Research Team</div>
+                <!-- Tear Sheet 2 -->
+                <div class="tear-sheet-card" data-tilt>
+                    <div>
+                        <div class="sheet-meta-bar">
+                            <span>INITIATING COVERAGE</span>
+                            <span class="sheet-badge">SELL-SIDE RESEARCH</span>
                         </div>
-                        <div class="track-period">MUMBAI</div>
+                        <h3 class="sheet-title">Greenlam Industries Limited</h3>
+                        <p class="sheet-thesis">
+                            Authored full-scale initiating coverage on India’s leading laminate manufacturer. Engineered a dynamic 3-statement forecast evaluating margin inflection from raw material stabilization (phenol/melamine) and capex commercialization at Naidupeta &amp; Tindivanam.
+                        </p>
+                        <div class="sheet-specs-table">
+                            <div class="spec-row">
+                                <span class="spec-key">Methodology</span>
+                                <span class="spec-value">SOTP &amp; Forward Multiples</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Sector</span>
+                                <span class="spec-value">Building Materials</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Key Driver</span>
+                                <span class="spec-value">Raw Material Cycle + Capex</span>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="track-bullets">
-                        <li>Covered 12 BSE/NSE-listed small- and mid-cap companies across <strong>Construction, Infrastructure, Building Materials, and Cement</strong> sectors.</li>
-                        <li>Authored and published <strong>35+ institutional and retail research reports</strong>, including initiating coverage notes, quarterly earnings reviews, and thematic sector analyses.</li>
-                        <li>Engineered <strong>5+ valuation models from scratch</strong> and maintained 19 financial models monitoring quarterly operating KPIs, revenue drivers, and EBITDA margin sensitivity.</li>
-                        <li>Monitored public infrastructure policy catalysts across <strong>MoRTH, NHAI, and the Jal Jeevan Mission</strong> to forecast contract award trajectories and order-book momentum.</li>
-                        <li>Co-managed the operational and analytical lifecycle of the <strong>OneClick Equity Portfolios</strong> product supporting approximately <strong>₹1,500 Crore AUM</strong>.</li>
-                    </ul>
+                    <div class="tag-row">
+                        <span class="tag-pill">Initiating Coverage</span>
+                        <span class="tag-pill">SOTP Valuation</span>
+                        <span class="tag-pill">Earnings Model</span>
+                    </div>
                 </div>
 
-                <!-- Role 3: ICICI Bank -->
-                <div class="track-card" data-category="banking" data-tilt>
-                    <div class="track-header">
-                        <div>
-                            <div class="track-role">Summer Intern · Transaction Banking Services</div>
-                            <div class="track-org">ICICI Bank · Wholesale Banking Division</div>
+                <!-- Tear Sheet 3 -->
+                <div class="tear-sheet-card" data-tilt>
+                    <div>
+                        <div class="sheet-meta-bar">
+                            <span>INSTITUTIONAL SCOPING</span>
+                            <span class="sheet-badge">PE / VC &amp; AIF</span>
                         </div>
-                        <div class="track-period">MUMBAI</div>
+                        <h3 class="sheet-title">AIF Ecosystem &amp; Family Offices</h3>
+                        <p class="sheet-thesis">
+                            Conducted comprehensive ecosystem mapping of Alternate Investment Funds and transaction banking opportunities. Extracted regulatory filings for 46 SEBI-registered AIFs, evaluated fund registrar operations, and scoped transaction banking requirements for a ~$30B family office universe.
+                        </p>
+                        <div class="sheet-specs-table">
+                            <div class="spec-row">
+                                <span class="spec-key">Market Size</span>
+                                <span class="spec-value">~$30B Addressable AUM</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Framework</span>
+                                <span class="spec-value">AIF Regulations &amp; Diligence</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Target Client</span>
+                                <span class="spec-value">AIF Funds &amp; Family Offices</span>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="track-bullets">
-                        <li>Evaluated institutional banking workflows and treasury requirements across India's growing Private Equity and Venture Capital ecosystem.</li>
-                        <li>Tracked <strong>46 newly registered Alternate Investment Funds (AIFs)</strong> via regulatory disclosures to build a structured database assessing market potential and registrar partnerships.</li>
-                        <li>Participated in commercial onboarding meetings with 3 leading AIF registrars alongside senior relationship managers.</li>
-                        <li>Identified Indian family offices (~$30B AUM) as an underpenetrated market segment and drafted bespoke transaction banking positioning papers.</li>
-                    </ul>
+                    <div class="tag-row">
+                        <span class="tag-pill">AIF Scoping</span>
+                        <span class="tag-pill">Regulatory Filings</span>
+                        <span class="tag-pill">Transaction Advisory</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    
     <!-- ==========================================
          ACADEMIC QUALIFICATIONS & EDUCATION
          ========================================== -->
@@ -2489,143 +2488,6 @@
     </section>
 
     <!-- ==========================================
-         GLOBAL MACRO INSIGHTS / BLOGS
-         ========================================== -->
-    <section id="insights">
-        <div class="container">
-            <div class="section-header">
-                <div class="eyebrow">GLOBAL MACRO &amp; US MARKETS</div>
-                <h2 class="section-title">Research Insights</h2>
-                <p class="section-desc">
-                    Institutional notes connecting US monetary policy, trade, and global flows to Indian equity valuation and sector strategy.
-                </p>
-            </div>
-
-            <div class="dossier-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
-                <!-- Blog 1 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>GLOBAL MACRO NOTE 01</span>
-                            <span class="sheet-badge">SEP 2026 · 9 MIN</span>
-                        </div>
-                        <h3 class="sheet-title">Fed to FII: How US Rates Drive Indian Small &amp; Mid-Caps</h3>
-                        <p class="sheet-thesis">
-                            Fed at 3.75–4.00%, US 10Y above 5.10%, ₹2.45 lakh crore FPI outflows. The three transmission channels — yields, currency, crude — and the screening overlay I use for small-caps in risk-off regimes.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Framework</span>
-                                <span class="spec-value">Yields → Currency → Flows</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Focus</span>
-                                <span class="spec-value">Small/Mid-Cap Valuation</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
-                        <a href="blog-fed-fii.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
-                            <span>Read Full Note</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog 2 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>GLOBAL MACRO NOTE 02</span>
-                            <span class="sheet-badge">SEP 2026 · 10 MIN</span>
-                        </div>
-                        <h3 class="sheet-title">US Tariffs &amp; the China+1 Play: Winners and Losers</h3>
-                        <p class="sheet-thesis">
-                            US-India tariff cut to 18%, ~60% of US smartphones now India-sourced. My 4-box filter — tariff gap, certified capacity, value-add, stickiness — to separate real beneficiaries from story stocks.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Framework</span>
-                                <span class="spec-value">HTS-Level Tariff Gap</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Focus</span>
-                                <span class="spec-value">EMS · Auto · Chemicals</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
-                        <a href="blog-us-tariffs-china-plus-one.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
-                            <span>Read Full Note</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog 3 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>GLOBAL MACRO NOTE 03</span>
-                            <span class="sheet-badge">SEP 2026 · 9 MIN</span>
-                        </div>
-                        <h3 class="sheet-title">From Crude to Phenol: How Commodities Hit Margins</h3>
-                        <p class="sheet-thesis">
-                            Phenol Rs 85 → Rs 160, melamine Rs 88 → Rs 135, then relief after Hormuz reopened. The Brent-to-laminate transmission chain and the spread tracker I use for Building Materials EBITDA.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Framework</span>
-                                <span class="spec-value">Spreads → Sensitivity Tree</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Focus</span>
-                                <span class="spec-value">Laminates · Panels · Resins</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
-                        <a href="blog-global-commodities-margins.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
-                            <span>Read Full Note</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Blog 4 -->
-                <div class="tear-sheet-card" data-tilt>
-                    <div>
-                        <div class="sheet-meta-bar">
-                            <span>GLOBAL MACRO NOTE 04</span>
-                            <span class="sheet-badge">SEP 2026 · 10 MIN</span>
-                        </div>
-                        <h3 class="sheet-title">US Slowdown Playbook: Rebalancing Indian Portfolios</h3>
-                        <p class="sheet-thesis">
-                            US 1.5% real vs 8% nominal, Fed to 4.25%, 35% recession odds. Five rebalancing levers — quality screens, duration barbell, export hedge, IPO selectivity, cash calendar — for large mandates.
-                        </p>
-                        <div class="sheet-specs-table">
-                            <div class="spec-row">
-                                <span class="spec-key">Framework</span>
-                                <span class="spec-value">3 Scenarios → 5 Levers</span>
-                            </div>
-                            <div class="spec-row">
-                                <span class="spec-key">Focus</span>
-                                <span class="spec-value">Portfolio Construction</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; align-items: center; margin-top: 1rem;">
-                        <a href="blog-us-slowdown-playbook.html" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.85rem;">
-                            <span>Read Full Note</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================
          DIRECT ANALYST TERMINAL / CONTACT
          ========================================== -->
     <section id="contact">
@@ -2699,13 +2561,12 @@
 
             <div class="footer-directory">
                 <a href="#hero" class="footer-link">Top</a>
-                <a href="#dossier" class="footer-link">Coverage</a>
-                <a href="#projects" class="footer-link">Projects</a>
                 <a href="#track-record" class="footer-link">Experience</a>
+                <a href="#projects" class="footer-link">Projects</a>
+                <a href="#dossier" class="footer-link">Coverage</a>
                 <a href="#education" class="footer-link">Education</a>
                 <a href="#capabilities" class="footer-link">Competencies</a>
                 <a href="#credentials" class="footer-link">Credentials</a>
-                <a href="#insights" class="footer-link">Insights</a>
                 <a href="#contact" class="footer-link">Contact</a>
             </div>
 
